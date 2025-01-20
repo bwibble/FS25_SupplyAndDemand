@@ -8,6 +8,7 @@ function SupplyAndDemandEvent.emptyNew()
 end
 
 function SupplyAndDemandEvent.new(fillTypeFactors, subTypeFactors)
+    print('SENDING DATA')   -- debug
     local self = SupplyAndDemandEvent.emptyNew()
     self.fillTypeFactors = fillTypeFactors
     self.subTypeFactors = subTypeFactors
@@ -68,5 +69,20 @@ function SupplyAndDemandEvent:run(connection)
                 subType.factor = self.subTypeFactors[subType.name]
             end
         end
+        --debug start
+        print('RECEIVED DATA')
+
+        print('self.fillTypeFactors:')
+        for k, v in pairs(self.fillTypeFactors) do
+            print(tostring(k)..'  =  '..tostring(v or 'nil'))
+        end
+
+        print('self.subTypeFactors:')
+        for k, v in pairs(self.subTypeFactors) do
+            print(tostring(k)..'  =  '..tostring(v or 'nil'))
+        end
+
+        print('END RECEIVED DATA')
+        --debug end
     end
 end
